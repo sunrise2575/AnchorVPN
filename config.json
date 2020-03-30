@@ -1,0 +1,24 @@
+{
+    "vpn" : {
+        "network" : "<ip address range in the VPN network, CIDR format, for example 172.30.0.0/16>",
+        "route" : "<ip address range in which each client sends, CIDR format, for example 10.0.0.0/8>"
+    },
+    "server" : {
+        "domain" : "<your domain or ip, for example myhomepage.org or 123.123.123.123>",
+        "port" : "<your UDP port, for example 54321>",
+        "interface" : "<your wireguard interface, for example wg0>",
+        "key" : {
+            "private" : "<wireguard private key path, for example /etc/wireguard/wg0-private.key>",
+            "public" : "<wireguard public key path, for example /etc/wireguard/wg0-public.key>"
+        }
+    },
+    "anchor" : [
+        {
+            "ip" : "<anchor's ip in the VPN network, for example 172.30.0.2/32",
+            "route" : [ "<anchor's ip routing range, for example 10.10.0.0/16>" ],
+            "key" : {
+                "public" : "<anchor's public key>"
+            }
+        }
+    ]
+}
