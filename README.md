@@ -65,6 +65,7 @@ Address = <Anchor's IP address in VPN network, CIDR format>
 PublicKey = <VPN provider's public key>
 Endpoint = <VPN provider's server address or domain>:<VPN provider's UDP port for Wireguard>
 AllowedIPs = <VPN network's IP range, CIDR format>
+PersistentKeepalive = 5
 ```
 
 For example, in the diagram at section 2-2, Anchor 1's setting is like this:
