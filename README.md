@@ -241,7 +241,7 @@ http://<ip or domain name>:8000/client-list
 
 When a user access AnchorVPN server on HTTP, the user immediately gets a Wireguard configuration.
 
-- If the user copy&paste and activate the configuration within predefined time duration (default is 30 seconds) from the issuing, the user has accessibility to the intranet.
+- If the user copy&paste and activate the configuration within predefined time duration (default is **180 seconds; 3 minutes**) from the issuing, the user has accessibility to the intranet.
 
 - In other words, if the user can't activate the configuration within the predefined time duration, the issued configuration will be deleted immediately, and the user must re-access the HTTP site and get a new configuration.
 
