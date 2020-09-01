@@ -94,7 +94,7 @@ func main() {
 	configPath := flag.String("path.config", "./config.json", "Config path. Must be JSON format");
 	dbPath := flag.String("path.db", "./clients.db", "Database file path")
 	logPath := flag.String("path.log", "./vpn.log", "Program log output");
-	unusedTime := flag.Int("time.unused", 30, "Delete client that has been issued but unused instantly. Unit is seconds");
+	unusedTime := flag.Int("time.unused", 180, "Delete client that has been issued but unused instantly. Unit is seconds");
 	leaseTime := flag.Int("time.lease", 3600*24*3, "Delete client that expires lease time. Unit is seconds")
 	version := flag.Bool("version", false, "Print program version");
 
