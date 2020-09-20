@@ -156,7 +156,7 @@ You should modify `config.json` before running AnchorVPN. In the diagram situati
 ```json
 {
     "vpn" : {
-        "network" : "172.30.0.0/16",
+        "network" : "172.30.0.1/16",
         "route" : "10.0.0.0/8"
     },
     "server" : {
