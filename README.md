@@ -1,6 +1,6 @@
 # AnchorVPN
 
-![](./readme1.png)
+![](./.readme-img/1.png)
 
 AnchorVPN is Wireguard VPN managing server. The goal of AnchorVPN is everyone's easy accessing to an intranet in a firewall (e.g. School Network, Company Network, etc...) By AnchorVPN, multiple user can easily get VPN without special coding or typing.
 
@@ -8,7 +8,7 @@ AnchorVPN is Wireguard VPN managing server. The goal of AnchorVPN is everyone's 
 
 There are four types of computers in a whole network: `VPN provider`, `anchor`, `client`, `node`. You only set `VPN provider` and `anchor`. In this tutorial, I'm going to bring all the examples from this diagram:
 
-![](./readme3.png)
+![](./.readme-img/2.png)
 
 ## `anchor` Setup
 
@@ -273,7 +273,7 @@ To prevent Denial-of-Service (DoS) and Distributed DoS (DDoS), AnchorVPN adopted
 
 By the power of Wireguard, AnchorVPN doesn't send all traffic to an intranet. Your internet speed won't slow down like LDAP, VPNGate, IPsec...
 
-![](./readme2.png)
+![](./.readme-img/3.png)
 
 ### I Have Wireguard. Do I Have to Install AnchorVPN?
 

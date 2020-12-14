@@ -1,4 +1,4 @@
-package db
+package main
 
 import (
 	"time"
@@ -9,9 +9,9 @@ type IP = string
 
 // Profile : Profile information of a client, used as a value
 type Profile struct {
-	IP         IP
-	PublicKey  string
+	IP        IP
+	PublicKey string
 	//PrivateKey string
-	Created    time.Time
-	LastSeen   time.Time
+	Created  time.Time
+	LastSeen time.Time
 }
