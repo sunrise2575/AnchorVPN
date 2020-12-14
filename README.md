@@ -166,7 +166,8 @@ You should modify `config.json` before running AnchorVPN. In the diagram situati
         "key" : {
             "private" : "/etc/wireguard/wg0-priv.key",
             "public" : "/etc/wireguard/wg0-pub.key"
-        }
+        },
+        "webport": "8080"
     },
     "anchor" : [
         {
@@ -222,17 +223,17 @@ watch -n 0.3 -c "cat vpn.log | last -20 | ccze -A"
 
 Provide normal Wireguard configuration for desktop:
 ```
-http://<ip or domain name>:8000/
+http://<ip or domain name>:<webport>/
 ```
 
 Provide QR code Wireguard configuration for mobile:
 ```
-http://<ip or domain name>:8000/qrcode
+http://<ip or domain name>:<webport>/qrcode
 ```
 
 JSON formatted client lists:
 ```
-http://<ip or domain name>:8000/client-list
+http://<ip or domain name>:<webport>/client-list
 ```
 
 ## The overall features of AnchorVPN

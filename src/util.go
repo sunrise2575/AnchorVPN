@@ -10,8 +10,8 @@ import (
 // Run function
 func supportRun(command string) string {
 	s := strings.Split(command, " ")
-	out, e := exec.Command(s[0], s[1:]...).Output()
-	lg.err("Command finished with error.", e)
+	out, e := exec.Command(s[0], s[1:]...).CombinedOutput()
+	lg.err("command ["+command+"] error: "+string(out), e)
 	return strings.TrimSuffix(string(out), "\n")
 }
 

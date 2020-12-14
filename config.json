@@ -1,6 +1,6 @@
 {
     "vpn" : {
-        "network" : "<ip address range in the VPN network, CIDR format, for example 172.30.0.0/16>",
+        "network" : "<provider's ip address with ip range in the VPN network, CIDR format, for example 172.30.0.1/16>",
         "route" : "<ip address range in which each client sends, CIDR format, for example 10.0.0.0/8>"
     },
     "server" : {
@@ -10,7 +10,8 @@
         "key" : {
             "private" : "<wireguard private key path, for example /etc/wireguard/wg0-private.key>",
             "public" : "<wireguard public key path, for example /etc/wireguard/wg0-public.key>"
-        }
+        },
+        "webport": "<your web service port, for example 8080>"
     },
     "anchor" : [
         {

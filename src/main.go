@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"strconv"
+	"syscall"
 
 	"runtime"
 
@@ -37,10 +38,9 @@ func initWG(configPath, iface string) {
 	lg.err("DB", e)
 
 	for _, c := range tmp {
-		str +=
-			"[Peer]\n" +
-				"PublicKey = " + c.PublicKey + "\n" +
-				"AllowedIPs = " + c.IP + "/32\n"
+		str += "[Peer]\n" +
+			"PublicKey = " + c.PublicKey + "\n" +
+			"AllowedIPs = " + c.IP + "/32\n"
 		lg.out("Load IP from DB: " + c.IP)
 	}
 
@@ -127,6 +127,16 @@ func main() {
 	initDB(*dbPath)
 	iface := jsn.get("server.interface")
 	initWG(*configPath, iface)
+	func() {
+		c := make(chan os.Signal)
+		signal.Notify(c, os.Interrupt, syscall.SIGTERM)
+		go func() {
+			<-c
+			fmt.Println("\rcaught Ctrl+C, gracefully shutdown")
+			supportRun("wg-quick down " + jsn.get("server.interface"))
+			os.Exit(0)
+		}()
+	}()
 	initPeriodicDeletion(iface, *unusedTime, *leaseTime)
 
 	router := mux.NewRouter()
@@ -269,5 +279,5 @@ func main() {
 				w.Write([]byte(str))
 			}))
 
-	http.ListenAndServe(":8000", router)
+	http.ListenAndServe(":"+jsn.get("server.webport"), router)
 }

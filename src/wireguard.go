@@ -47,14 +47,14 @@ func wgClientConf(clientIP string, clientPrivKey string) string {
 
 	return fmt.Sprintf(
 		`
-[Interface]\n" +
-	PrivateKey = %v
-	Address = %v/32
-	[Peer]
-	PublicKey = %v 
-	AllowedIPs = %v, %v
-	Endpoint = %v
-	PersistentKeepalive = 1
+[Interface]
+PrivateKey = %v
+Address = %v/32
+[Peer]
+PublicKey = %v 
+AllowedIPs = %v, %v
+Endpoint = %v
+PersistentKeepalive = 1
 `,
 		clientPrivKey,
 		clientIP,
@@ -67,20 +67,21 @@ func wgClientConf(clientIP string, clientPrivKey string) string {
 func wgGenServerSetting(configPath string) string {
 	vpnRoute := cidr(jsn.get("vpn.route"))
 	vpnNetwork := cidr(jsn.get("vpn.network"))
+	vpnIface := jsn.get("server.interface")
 
 	str := fmt.Sprintf(
 		`
 [Interface]
-	Address = %v
-	SaveConfig = true
-	PostUp = iptables -A FORWARD -d %v -j ACCEPT && iptables -A FORWARD -d %v -j ACCEPT
-	PreDown = iptables -D FORWARD -d %v -j ACCEPT && iptables -D FORWARD -d %v -j ACCEPT
-	ListenPort = %v
-	PrivateKey = %v
+Address = %v
+SaveConfig = true
+PostUp = iptables -A FORWARD -i %v -d %v -j ACCEPT && iptables -A FORWARD -d %v -j ACCEPT
+PreDown = iptables -D FORWARD -i %v -d %v -j ACCEPT && iptables -D FORWARD -d %v -j ACCEPT
+ListenPort = %v
+PrivateKey = %v
 `,
 		jsn.get("vpn.network"),
-		vpnRoute, vpnNetwork,
-		vpnRoute, vpnNetwork,
+		vpnIface, vpnRoute, vpnNetwork,
+		vpnIface, vpnRoute, vpnNetwork,
 		jsn.get("server.port"),
 		supportFile2Str(jsn.get("server.key.private")))
 
@@ -105,8 +106,7 @@ func wgGenServerSetting(configPath string) string {
 			`
 [Peer]
 PublicKey = %v
-AllowedIPs = %v
-`,
+AllowedIPs = %v`,
 			pubKey,
 			ip)
 
