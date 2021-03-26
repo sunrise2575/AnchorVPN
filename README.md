@@ -16,11 +16,11 @@ There are four types of computers in a whole network: `VPN provider`, `anchor`, 
 
 The IP forwarding is a routing method of tossing packets which destination is not a current node. Because `anchor` isn't the destination of packets from `client`s or `node`s, `anchor` requires IP forwarding. By modifying `/etc/sysctl.conf`, you can permanently allow IP forwarding.
 ```
-net.ipv4.ip_forwarding=1
+net.ipv4.ip_forward=1
 ```
 This is a permanent setting but it can be applied on the next booting. For not a permanent but an instant applying, you can type this command on your shell:
 ```bash
-sysctl -w net.ipv4.ip_forwarding=1
+sysctl -w net.ipv4.ip_forward=1
 ```
 I would suggest conducting both methods.
 
